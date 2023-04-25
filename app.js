@@ -4,7 +4,8 @@ const cartItemsE1 = document.querySelector(".cart-items");
 const subtotalE1 = document.querySelector(".subtotal");
 const totalItemsInCartE1 = document.querySelector(".total-items-in-cart");
 
-const likeItem = document.querySelector(".wishList");
+const likeItemE1 = document.querySelector(".total-wishlist");
+
 
 //TO render Products
 function renderProducts() {
@@ -22,7 +23,7 @@ function renderProducts() {
                         ${product.description}
                         </p>
                     </div>
-                    <div class="add-to-wishlist">
+                    <div class="add-to-wishlist" onclick="addToWishList(${product.id})">
                         <img src="./icons/heart.png" alt="add to wish list">
                     </div>
                     <div class="add-to-cart" onClick="addToCart(${product.id})">
@@ -33,7 +34,7 @@ function renderProducts() {
         `;
     });
 }
-renderProducts();
+// renderProducts();
 
 
 //To add items to cart
@@ -91,9 +92,6 @@ function renderCartItems() {
                 <div class="number">${item.numberOfUnits}</div>
                 <div class="btn plus" onclick="changeNumberOfUnits('plus', ${item.id})">+</div>           
             </div>
-            <div class="add-to-wishlist">
-                <img src="./icons/heart.png" alt="add to wish list" class="wishList"> 
-            </div>
         </div>
         `
     })
@@ -104,6 +102,31 @@ function renderCartItems() {
 //     document.getElementById("wishList").style.filter = 'invert(30%) sepia(96%) saturate(6575%) hue-rotate(354deg) brightness(89%) contrast(123%)';
 // updateCart();
 // }
+
+
+//ADD TO WISHLIST
+let like = [];
+
+function addToWishList(id) {
+    //check if product exist in wishlist
+    if (like.some((item) => item.id === id)) {
+        alert('product already in your wishlist');
+    } else {
+        const item = products.find((product) => product.id === id);
+        like.push({ ...item, numberOfLikes: 1, });
+    }
+    totalWishlist();
+}
+
+function totalWishlist() {
+    let totalLikes = 0;
+
+    like.forEach(item => {
+        totalLikes += item.numberOfLikes
+    });
+
+    likeItemE1.innerHTML = totalLikes;
+}
 
 
 //Change number of units
@@ -134,10 +157,9 @@ function removeItemFromCart(id) {
 
 
 //Toggle Like Button
-function likeButton() {
-    likeItem.addEventListener('click', function () {
-        likeItem.classList.toggle('wishlist');
 
-    })
+//Disable Button
+
+function disable(x) {
+    x.disabled = true;
 }
-

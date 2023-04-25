@@ -285,7 +285,6 @@ main {
 }
 
 .products .item .item-container .add-to-wishlist {
-  background-color: rgba(255, 21, 21, 0.7);
 
   display: flex;
   justify-content: center;
@@ -300,6 +299,14 @@ main {
   border-radius: 50%;
 
   cursor: pointer;
+}
+
+.add-to-wishlist:hover {
+  background-color: rgba(255, 21, 21, 0.7);
+}
+
+.total-wishlist {
+  margin-left: -20px;
 }
 
 .products .item .item-container .add-to-cart img {
@@ -427,6 +434,8 @@ main {
 
 .wishlist {
   filter: invert(30%) sepia(96%) saturate(6575%) hue-rotate(354deg) brightness(89%) contrast(123%);
+  margin-left: 10px;
+  z-index: -1;
 }
 
 .item-detail {
@@ -438,4 +447,9 @@ main {
 button:hover {
   background-color: rgba(255, 0, 0, 0.6);
   cursor: pointer;
+}
+
+.available-stock {
+  margin-left: 280px;
+  width: 60%;
 }
